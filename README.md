@@ -1,1 +1,2 @@
-# collin-cahill-ux-iop
+# UX Intern Onboarding Project
+# Collin Cahill
