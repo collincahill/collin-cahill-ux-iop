@@ -1,0 +1,33 @@
+html {
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
+    transition: color 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+header a:hover {
+    color: #909090;
+}
+
+nav a {
+    text-decoration: none;
+    position: relative;
+}
+nav a:before {
+    position: absolute;
+    content: "";
+    height: 100%;
+}
+
+article {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 1.2em;
+}
+article > * {
+    margin: 0;
+    line-height: 1.5;
+}
