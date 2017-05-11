@@ -19,3 +19,4 @@ A UX project to get me up to speed on necessary skills and technologies I will b
 ## Notes
 ### Unit 2
 - I added a viewport meta attribute to the head of each page. This is something I've learned using Google's Page Insights that has helped my responsive pages load better on mobile.
+- All pages are dummy pages. No functionality, just markup and styling. Submit buttons don't work.
