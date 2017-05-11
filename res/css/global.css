@@ -13,22 +13,15 @@ body {
   margin: auto;
 }
 
-h2 {
-    font-weight: 300;
-}
-
-h1, h2, h3 {
-    margin:  0;
-}
+h1, h2, h3 { margin:  0; }
+h2 { font-weight: 300;}
 
 header a {
     text-decoration: none;
     color: black;
     transition: color 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
 }
-header a:hover {
-    color: #909090;
-}
+header a:hover { color: #909090; }
 
 /* Navigation */
 
@@ -51,7 +44,26 @@ nav ul:after {
 /* Queries */
 
 @media screen and (min-width: 1000px) {
-  body {
-    padding: 1rem;
-  }
+  body { padding: 1rem; }
 }
+
+/* standard style for article content */
+
+article {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 1.2em;
+    background-color: white;
+}
+article > * {
+    margin: 0;
+    line-height: 2.2;
+}
+
+/* standard style for tables */
+
+article table { border-collapse: collapse; }
+article td { border-bottom: 1px solid black; }
+article tbody :last-child td { border: none; }
+article tr :first-child { padding-right: 0.4rem; }
+article tr :last-child { padding-left: 0.4rem; }
