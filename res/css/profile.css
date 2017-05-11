@@ -1,0 +1,29 @@
+/* user profile cards */
+
+article {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 1.2em;
+}
+article > * {
+    margin: 0;
+    line-height: 2.2;
+}
+
+article table {
+    border-collapse: collapse;
+}
+
+article td {
+  border-bottom: 1px solid black;
+}
+article tbody :last-child td {
+    border: none;
+}
+
+article tr :first-child {
+    padding-right: 0.4rem;
+}
+article tr :last-child {
+    padding-left: 0.4rem;
+}
