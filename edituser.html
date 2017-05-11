@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Edit User | IOP</title>
     <link rel="stylesheet" type="text/css" href="res/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="res/css/edituser.css" />
   </head>
   <body>
     <header>
@@ -23,7 +22,34 @@
       </ul>
     </nav>
     <main>
-
+      <article>
+        <h3>Edit User</h3>
+        <form>
+          <label for="firstName">
+            <p>First Name</p>
+            <input type="text" id="firstName" value="Sally" />
+          </label>
+          <label for="lastName">
+            <p>Last Name</p>
+            <input type="text" id="lastName" value="Egan" />
+          </label>
+          <label for="phone">
+            <p>Phone</p>
+            <input type="text" id="phone" value="(543) 555 - 4602" />
+          </label>
+          <label for="email">
+            <p>Email</p>
+            <input type="text" id="email" disabled value="sally.egan@banno.com" />
+          </label>
+          <label for="_id">
+            <p>ID #</p>
+            <input type="text" id="_id" value="563563" />
+          </label>
+          <label for="submit">
+            <input type="submit" />
+          </label>
+        </form>
+      </article>
     </main>
     <footer>
 

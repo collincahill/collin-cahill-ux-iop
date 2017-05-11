@@ -4,7 +4,7 @@
 A UX project to get me up to speed on necessary skills and technologies I will be using on the UX team.
 
 ## How to Use
-Currently runs using the file system and the browser, but will run the same on a server. Just open one of the .html files and you're in.
+(unit 2) Currently runs using the file system and the browser, but will run the same on a server. Just open one of the .html files and you're in.
 
 ## Dependencies
 - The stylesheet imports a font from Google Fonts (Source Sans Pro).
@@ -14,6 +14,7 @@ Currently runs using the file system and the browser, but will run the same on a
 - declare a charset meta attribute in the head tag
 - follow semantic markup on each page
 - data stored in tables
+- accessibility measures for submission forms
 
 ## Notes
 ### Unit 2

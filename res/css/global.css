@@ -67,3 +67,18 @@ article td { border-bottom: 1px solid black; }
 article tbody :last-child td { border: none; }
 article tr :first-child { padding-right: 0.4rem; }
 article tr :last-child { padding-left: 0.4rem; }
+
+
+/* standard style for input forms */
+
+label {
+    display:block;
+    position: relative;
+}
+label > * {
+    display:inline-block;
+}
+input[type="submit"] {
+    display: block;
+    margin: auto;
+}
