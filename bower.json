@@ -1,0 +1,21 @@
+{
+  "name": "UX Intern Onboarding Project",
+  "description": "A simple project so I can learn how to use the technologies I will be using in the UX team.",
+  "main": "",
+  "authors": [
+    "Collin Cahill <collin.cahill@banno.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/collincahill/collin-cahill-ux-iop",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.9.1"
+  }
+}
