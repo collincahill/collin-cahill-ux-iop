@@ -3,49 +3,51 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>New User | IOP</title>
-    <link rel="stylesheet" type="text/css" href="res/css/global.css" />
+    <title>Edit User | IOP</title>
+    <link rel="stylesheet" type="text/css" href="/global.css" />
   </head>
   <body>
     <header>
       <hgroup>
         <h1><a href="#">Intern Onboarding Project</a></h1>
-        <h2>New User</h2>
+        <h2>Edit User</h2>
       </hgroup>
     </header>
     <nav>
       <ul>
-        <li><a href="userprofile.html">User Profile Example</a></li>
-        <li><a href="userlist.html">User List</a></li>
-        <li><a href="newuser.html">New User</a></li>
-        <li><a href="edituser.html">Edit User</a></li>
+        <li><a href="/userprofile/">User Profile Example</a></li>
+        <li><a href="/">User List</a></li>
+        <li><a href="/newuser/">New User</a></li>
+        <li><a href="/edituser/">Edit User</a></li>
       </ul>
     </nav>
     <main>
       <article>
-        <h3>New User</h3>
+        <h3>Edit User</h3>
         <form>
           <label for="firstName">
             <p>First Name</p>
-            <input type="text" id="firstName" />
+            <input type="text" id="firstName" value="Sally" />
           </label>
           <label for="lastName">
             <p>Last Name</p>
-            <input type="text" id="lastName" />
+            <input type="text" id="lastName" value="Egan" />
           </label>
           <label for="phone">
             <p>Phone</p>
-            <input type="text" id="phone" />
+            <input type="text" id="phone" value="(543) 555 - 4602" />
           </label>
           <label for="email">
             <p>Email</p>
-            <input type="text" id="email" />
+            <input type="text" id="email" disabled value="sally.egan@banno.com" />
           </label>
           <label for="_id">
             <p>ID #</p>
-            <input type="text" id="_id" />
+            <input type="text" id="_id" value="563563" />
           </label>
-          <input type="submit" />
+          <label for="submit">
+            <input type="submit" />
+          </label>
         </form>
       </article>
     </main>
