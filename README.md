@@ -31,4 +31,4 @@ Unit 3 is where the project will diverge a bit from its previous iteration. Beca
   - Gulpfile with LiveReload
   #### Struggles
   - Since we no longer use Angular, I wanted to install Polymer as a dependency instead of Angular. This came with a host of complications. I spent a lot of time trying to find a package on npm or even Yarn that would work, but I ended up just installing the Bower package.
-  - (3.2) Not sure yet what to do with two disparate package files.
+    - Update: Bower package has been deleted and replaced with a Banno distribution of Polymer 2.
