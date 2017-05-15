@@ -65,7 +65,7 @@ article {
       border-bottom: 1px solid black; }
     article table:last-child tr td {
       border: none; }
-    article table:last-child[aria-hidden='true'] {
+    article table tbody[aria-hidden='true'] {
       display: none; }
   article button {
     float: right;
@@ -73,7 +73,8 @@ article {
     border: none;
     background: none;
     height: 2.5rem;
-    width: 2.5rem; }
+    width: 2.5rem;
+    transform: scaleY(-1); }
     article button::before, article button::after {
       position: absolute;
       content: "";
@@ -94,7 +95,7 @@ article {
     article button:hover::before, article button:hover::after {
       background: gray; }
     article button[data-content-hidden='true'] {
-      transform: scaleY(-1); }
+      transform: scaleY(1); }
 
 label {
   display: block;

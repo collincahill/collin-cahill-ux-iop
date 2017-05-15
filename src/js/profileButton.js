@@ -1,19 +1,43 @@
-window.onload = function() {
-  var buttons = document.getElementsByTagName('button');
-  console.log(buttons);
-  for (var button = 0; button < buttons.length; button++) {
+function Profile(data){
+  this.data = data;
+  this.table = data.querySelector('table');
+  this.content = data.querySelector('tbody[aria-hidden]');
+  this.button = data.querySelector('button');
 
-    var profile = buttons[button].parentElement;
-    buttons[button].addEventListener('click', toggleProfileDisplay(profile));
-  }
+  (function(self) {
+    self.button.addEventListener('click', function() {
+      self.toggleVisibility();
+    });
+  })(this);
 
-  function toggleProfileDisplay(el) {
-    var contentToToggle = document.querySelector(el.tagName + ' tbody[aria-hidden]'),
-        isDisplaying = contentToToggle.getAttribute('aria-hidden');
-    if(isDisplaying) {
-      contentToToggle.setAttribute('aria-hidden', 'true');
+  this.content.isHidden = function(){
+    return this.getAttribute('aria-hidden') == 'true';
+  };
+
+  this.toggleVisibility = function() {
+    if (this.content.isHidden()) {
+      this.hideOrShow('show');
     } else {
-      contentToToggle.setAttribute('aria-hidden', 'false');
+      this.hideOrShow('hide');
     }
-  }
-};
+  };
+
+  this.hideOrShow = function(hideOrShow) {
+    var toggleArgument;
+    if (hideOrShow == 'hide') {
+      this.table.setAttribute('width', this.table.offsetWidth);
+      toggleArgument = 'true';
+    } else {
+      this.table.setAttribute('width', 'auto');
+      toggleArgument = 'false';
+    }
+    this.content.setAttribute('aria-hidden', toggleArgument);
+    this.button.setAttribute('data-content-hidden', toggleArgument);
+  };
+}
+
+var profiles = [],
+    p = document.querySelectorAll('article');
+p.forEach(function(profile){
+  profiles.push(new Profile(profile));
+});
