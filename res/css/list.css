@@ -1,0 +1,10 @@
+article tr :last-child:not(th) {
+    text-align: right;
+}
+td {
+    padding: 0 0.3em;
+}
+tr:hover:not(:first-child) {
+    background: linear-gradient( to right, white, #f6f6f6);
+    cursor: pointer;
+}
