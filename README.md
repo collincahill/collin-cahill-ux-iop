@@ -4,7 +4,8 @@
 A UX project to get me up to speed on necessary skills and technologies I will be using on the UX team.
 
 ## How to Use
-Recommended: open command line in the root of the repo and run gulp. This will run a LiveReload server on port 1820.
+Recommended: open command line in the root of the repo and run gulp. This will run a LiveReload server on [port 1820](http://localhost:1820).
+Alternatively, you can access the project locally by just opening one of the HTML files in a web browser. The global stylesheet has been preprocessed already, so the pages should load like normal.
 
 ## Dependencies
 - [Polymer](https://www.polymer-project.org/)
