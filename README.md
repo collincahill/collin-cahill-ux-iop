@@ -52,3 +52,9 @@ This is mostly a learning ramp for JS. Adding controls and behaviors for the pag
 
   #### Struggles
   - Tried document.getElement_______ but found that it wasn't versatile enough for my purposes. Decided to do away with the compatibility and just use querySelector.
+
+### Unit 5
+This unit is setup for the main portion of the project. It is mostly standards things.
+  #### Standards Implemented
+  - Matches example file structure used in Angular projects
+  - Uses EditorConfig to enforce code conventions.
