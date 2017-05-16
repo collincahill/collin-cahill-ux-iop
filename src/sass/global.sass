@@ -2,7 +2,8 @@
 
 $main-color: black
 $fonts: 'Source Sans Pro', sans-serif
-
+*
+  box-sizing: border-box
 html
   font-family: $fonts
   box-sizing: border-box
@@ -14,6 +15,11 @@ body
   padding: 0
   max-width: 1000px
   margin: auto
+
+main
+  display: flex
+  flex-wrap: wrap
+
 
 h1, h2, h3
   margin:  0
@@ -45,13 +51,8 @@ nav
       &:hover
         background: #9e9e9e
 
-@media screen and (min-width: 1000px)
-  body
-    padding: 1rem
-
 article
   border: 1px solid $main-color
-  display: inline-block
   padding: 1.2em
   background-color: white
 
@@ -81,10 +82,13 @@ article
     float: right
     position: relative
     border: none
-    background: none
+    outline: none
+    background-color: #bfbfbf
     height: 2.5rem
     width: 2.5rem
     transform: scaleY(-1)
+    transition: background-color 0.5s ease
+    border-radius: 100%
     &::before, &::after
       position: absolute
       content: ""
@@ -103,20 +107,21 @@ article
       transform: rotate(-45deg)
       left: 52%
     &:hover
+      background-color: #efefef
       &::before, &::after
         background: gray
     &[data-content-hidden='true']
       transform: scaleY(1)
-
-
-
 
 label
   display: block
   position: relative
   > *
     display: inline-block
-
 input[type="submit"]
   display: block
   margin: auto
+
+  @media screen and (min-width: 1000px)
+    body
+      padding: 1rem

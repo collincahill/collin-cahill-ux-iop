@@ -38,3 +38,7 @@ This is mostly a learning ramp for JS. Adding controls and behaviors for the pag
   - Granular functions that each do one thing
   - Careful function and variable naming
   - Pure CSS control button
+  - Used JS Prototypes for object-oriented interactions
+
+  #### Struggles
+  - Tried document.getElement_______ but found that it wasn't versatile enough for my purposes. Decided to do away with the compatibility and just use querySelector.
