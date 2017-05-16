@@ -8,7 +8,13 @@ Recommended: open command line in the root of the repo and run gulp. This will r
 
 ## Dependencies
 - [Polymer](https://www.polymer-project.org/)
-- [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro).
+- [Web Components](https://www.webcomponents.org/)
+- [Gulp](http://gulpjs.com/)
+  - [gulp-connect](https://www.npmjs.com/package/gulp-connect)
+  - [gulp-help](https://www.npmjs.com/package/gulp-help)
+  - [gulp-sass](https://www.npmjs.com/package/gulp-sass)
+  - [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
+- [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro)
 
 ## Notes
 ### Unit 2
