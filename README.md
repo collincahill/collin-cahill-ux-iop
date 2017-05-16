@@ -14,6 +14,9 @@ Recommended: open command line in the root of the repo and run gulp. This will r
   - [gulp-help](https://www.npmjs.com/package/gulp-help)
   - [gulp-sass](https://www.npmjs.com/package/gulp-sass)
   - [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
+  - [gulp-jshint](https://www.npmjs.com/package/gulp-jshint)
+- [JSHint](http://jshint.com/)
+  - [jshint-stylish](https://www.npmjs.com/package/jshint-stylish)
 - [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro)
 
 ## Notes

@@ -1,3 +1,5 @@
+'use strict';
+
 function Profile(data){
   this.table = data.querySelector('table');
   this.content = data.querySelector('tbody[aria-hidden]');
@@ -18,10 +20,10 @@ function Profile(data){
   };
 
   this.content.isHidden = function(){
-    return this.getAttribute('aria-hidden') == 'true';
+    return this.getAttribute('aria-hidden') === 'true';
   };
   this.hide = function() {
-    this.table.style.width = this.table.offsetWidth + "px";
+    this.table.style.width = this.table.offsetWidth + 'px';
     this.content.setAttribute('aria-hidden', 'true');
     this.button.setAttribute('data-content-hidden', 'true');
   };

@@ -7,9 +7,15 @@
   },
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^4.0.0",
     "gulp-connect": "^5.0.0",
     "gulp-help": "^1.6.1",
-    "gulp-sass": "^3.1.0"
+    "gulp-jshint": "^2.0.4",
+    "gulp-sass": "^3.1.0",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/collincahill/collin-cahill-ux-iop"
   }
 }
