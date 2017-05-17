@@ -1,7 +1,10 @@
+'use strict';
+
 var gulp = require('gulp-help')(require('gulp')),
     connect = require('gulp-connect'),
     sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer');
+    jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish');
 
 gulp.task('connect', 'Starts a server for LiveReload', function() {
   connect.server({
@@ -18,7 +21,7 @@ gulp.task('reload', 'Reloads project files', function() {
 
 gulp.task('watch', 'Watches for changes in project files, calls reload task when changes occur', function() {
   gulp.watch(['./src/sass/*.s*ss'], ['sass']);
-  gulp.watch(['./src/css/*.css'], ['prefix']);
+  gulp.watch(['./src/js/*.js'], ['lint']);
   gulp.watch(['./src/**/*.*'], ['reload']);
 });
 
@@ -28,10 +31,10 @@ gulp.task('sass', 'Preprocesses SASS styles', function() {
              .pipe(gulp.dest('./src/css'));
 });
 
-gulp.task('prefix', 'Add missing vendor prefixes to CSS', function() {
-  gulp.src('./src/css/*.css')
-      .pipe(autoprefixer())
-      .pipe(gulp.dest('./src/css'));
+gulp.task('lint', function() {
+  return gulp.src('./src/js/*.js')
+             .pipe(jshint())
+             .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('default', 'Runs by default', ['sass', 'prefix', 'connect', 'watch']);
+gulp.task('default', 'Runs by default', ['sass', 'lint', 'connect', 'watch']);
