@@ -23,9 +23,9 @@ function Profile(data){
     return this.getAttribute('aria-hidden') === 'true';
   };
   this.hide = function() {
-    this.table.style.width = this.table.offsetWidth + 'px';
-    this.content.setAttribute('aria-hidden', 'true');
-    this.button.setAttribute('data-content-hidden', 'true');
+		this.table.style.width = this.table.offsetWidth + 'px';
+		this.content.setAttribute('aria-hidden', 'true');
+		this.button.setAttribute('data-content-hidden', 'true');
   };
   this.show = function() {
     this.table.style.width = 'auto';
@@ -35,7 +35,7 @@ function Profile(data){
 }
 
 var profiles = [],
-    p = document.querySelectorAll('article');
+		p = document.querySelectorAll('article');
 p.forEach(function(profile){
-  profiles.push(new Profile(profile));
+	profiles.push(new Profile(profile));
 });
