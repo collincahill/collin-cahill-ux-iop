@@ -4,11 +4,20 @@
 A UX project to get me up to speed on necessary skills and technologies I will be using on the UX team.
 
 ## How to Use
-Recommended: open command line in the root of the repo and run gulp. This will run a LiveReload server on port 1820.
+Recommended: open command line in the root of the repo and run gulp. This will run a LiveReload server on [port 1820](http://localhost:1820).
 
 ## Dependencies
 - [Polymer](https://www.polymer-project.org/)
-- [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro).
+- [Web Components](https://www.webcomponents.org/)
+- [Gulp](http://gulpjs.com/)
+  - [gulp-connect](https://www.npmjs.com/package/gulp-connect)
+  - [gulp-help](https://www.npmjs.com/package/gulp-help)
+  - [gulp-sass](https://www.npmjs.com/package/gulp-sass)
+  - [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
+  - [gulp-jshint](https://www.npmjs.com/package/gulp-jshint)
+- [JSHint](http://jshint.com/)
+  - [jshint-stylish](https://www.npmjs.com/package/jshint-stylish)
+- [Source Sans Pro](https://fonts.google.com/specimen/Source+Sans+Pro)
 
 ## Notes
 ### Unit 2
@@ -31,3 +40,14 @@ Unit 3 is where the project will diverge a bit from its previous iteration. Beca
   #### Struggles
   - Since we no longer use Angular, I wanted to install Polymer as a dependency instead of Angular. This came with a host of complications. I spent a lot of time trying to find a package on npm or even Yarn that would work, but I ended up just installing the Bower package.
     - Update: Bower package has been deleted and replaced with a Banno distribution of Polymer 2.
+
+### Unit 4
+This is mostly a learning ramp for JS. Adding controls and behaviors for the page and then implementing JSHint on the developer side.
+  #### Standards Implemented
+  - Granular functions that each do one thing
+  - Careful function and variable naming
+  - Pure CSS control button
+  - Used JS Prototypes for object-oriented interactions
+
+  #### Struggles
+  - Tried document.getElement_______ but found that it wasn't versatile enough for my purposes. Decided to do away with the compatibility and just use querySelector.

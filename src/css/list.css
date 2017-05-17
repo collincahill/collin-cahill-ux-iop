@@ -5,6 +5,7 @@ td {
     padding: 0 0.3em;
 }
 tr:hover:not(:first-child) {
+    background: -webkit-gradient( linear, left top, right top, from(white), to(#f6f6f6));
     background: linear-gradient( to right, white, #f6f6f6);
     cursor: pointer;
 }

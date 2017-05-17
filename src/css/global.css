@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600");
+* {
+  box-sizing: border-box; }
+
 html {
   font-family: "Source Sans Pro", sans-serif;
   box-sizing: border-box;
@@ -11,6 +14,10 @@ body {
   max-width: 1000px;
   margin: auto; }
 
+main {
+  display: flex;
+  flex-wrap: wrap; }
+
 h1, h2, h3 {
   margin: 0; }
 
@@ -20,8 +27,9 @@ h2 {
 header a {
   text-decoration: none;
   color: black;
-  transition: color 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95);
-  hover-color: #909090; }
+  transition: color 0.5s cubic-bezier(0.45, 0.05, 0.55, 0.95); }
+  header a:hover {
+    color: #909090; }
 
 nav a {
   text-decoration: none;
@@ -37,32 +45,64 @@ nav ul {
     display: inline-block;
     float: left;
     padding: 0.5rem 0.7rem;
-    background: #656565;
-    hover-background: #9e9e9e; }
-
-@media screen and (min-width: 1000px) {
-  body {
-    padding: 1rem; } }
+    background: #656565; }
+    nav ul li:hover {
+      background: #9e9e9e; }
 
 article {
   border: 1px solid black;
-  display: inline-block;
   padding: 1.2em;
   background-color: white; }
   article > * {
     margin: 0;
     line-height: 2.2; }
-
-table {
-  border-collapse: collapse; }
-  table tbody:last-child td {
-    border: none; }
-  table tbody tr:first-child {
-    padding-right: 0.4rem; }
-  table tbody tr:last-child {
-    padding-left: 0.4rem; }
-  table tbody tr td {
-    border-bottom: 1px solid black; }
+  article table {
+    border-collapse: collapse;
+    display: inline-block; }
+    article table tbody tr:first-child {
+      padding-right: 0.4rem; }
+    article table tbody tr:last-child {
+      padding-left: 0.4rem; }
+    article table tbody tr td {
+      border-bottom: 1px solid black; }
+    article table:last-child tr td {
+      border: none; }
+    article table tbody[aria-hidden='true'] {
+      display: none; }
+  article button {
+    float: right;
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: #bfbfbf;
+    height: 2.5rem;
+    width: 2.5rem;
+    transform: scaleY(-1);
+    transition: background-color 0.5s ease;
+    border-radius: 100%; }
+    article button::before, article button::after {
+      position: absolute;
+      content: "";
+      background: black;
+      width: 50%;
+      height: 8%;
+      bottom: 25%;
+      border-radius: 20px;
+      transition: background 0.5s ease; }
+    article button::before {
+      transform-origin: bottom right;
+      transform: rotate(45deg);
+      left: 0; }
+    article button::after {
+      transform-origin: bottom left;
+      transform: rotate(-45deg);
+      left: 52%; }
+    article button:hover {
+      background-color: #efefef; }
+      article button:hover::before, article button:hover::after {
+        background: gray; }
+    article button[data-content-hidden='true'] {
+      transform: scaleY(1); }
 
 label {
   display: block;
@@ -73,3 +113,6 @@ label {
 input[type="submit"] {
   display: block;
   margin: auto; }
+  @media screen and (min-width: 1000px) {
+    input[type="submit"] body {
+      padding: 1rem; } }
