@@ -1,5 +1,5 @@
 {
-  "name": "@banno/ux-intern-onboarding-project",
+  "name": "ux-intern-onboarding-project",
   "version": "1.0.0",
   "dependencies": {
     "@banno/polymer": "^2.0.0-rc.7",

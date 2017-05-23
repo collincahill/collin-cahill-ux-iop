@@ -1,0 +1,83 @@
+<!doctype html>
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-list/iron-list.html">
+<link rel="import" href="user-profile.html">
+
+<dom-module id="user-list">
+	<template>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600");
+			:host {
+				display: flex;
+				font-family: "Source Sans Pro", sans-serif;
+				box-sizing: border-box;
+			}
+			:host > * {
+				margin: 0;
+				line-height: 2.2; }
+			table {
+				border-collapse: collapse;
+				display: block; }
+				table tbody tr td:first-child {
+					padding-right: 0.4rem;
+				}
+				tbody tr td:last-child {
+					padding-left: 0.4rem;
+					text-align: right;
+				}
+				table tbody tr td {
+					border-bottom: 1px solid black; }
+				table tbody tr:last-child td {
+					border: none;
+				}
+
+				table tbody[aria-hidden='true'] {
+					display: none; }
+
+			iron-list {
+				width:100%;
+				overflow-y:hidden !important;
+			}
+		</style>
+
+		<iron-ajax url="/src/data/users.json"
+							 last-response="{{users}}"
+							 handle-as="json"
+							 auto
+							 ></iron-ajax>
+
+		<iron-list items="[[users]]" as="user">
+			<template>
+				<user-profile first-name$="[[user.firstName]]"
+											last-name$="[[user.lastName]]"
+											user-id$="[[user.id]]"
+											phone$="[[user.phone]]"
+											email$="[[user.email]]"></user-profile>
+
+			</template>
+		</iron-list>
+	</template>
+	<script>
+		class UserList extends Polymer.Element {
+			static get is() { return 'user-list'; }
+
+			connectedCallback() {
+				super.connectedCallback();
+				this.addEventListener('profileVisibilityChanged', function(e) {
+					this.shadowRoot.querySelector('iron-list').fire('iron-resize');
+				});
+			}
+
+			static get properties() {
+				return {
+					users: Array,
+				}
+			}
+		}
+
+
+
+		window.customElements.define(UserList.is, UserList);
+	</script>
+</dom-module>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<dom-module id="app-navigation">
+	<template>
+		<style>
+			:host {
+				font-family: sans-serif;
+			}
+			a {
+			  text-decoration: none;
+			  color: white; }
+			ul {
+				padding: 0; }
+			ul:after {
+				content: "";
+				display: table;
+				clear: both; }
+			ul li {
+				display: inline-block;
+				float: left;
+				padding: 0.5rem 0.7rem;
+				background: #656565; }
+			ul li:hover {
+				background: #9e9e9e; }
+		</style>
+		<iron-selector selected="[[page]]" attr-for-selected="name" role="navigation">
+			<ul>
+				<li><a name="user-list" href="/">User List</a></li>
+				<li><a name="new-user"  href="/new-user">New User</a></li>
+				<li><a name="edit-user" href="/edit-user">Edit User</a></li>
+			</ul>
+		</iron-selector>
+	</template>
+
+	<script>
+		class AppNavigation extends Polymer.Element {
+			static get is() { return 'app-navigation' }
+		}
+		window.customElements.define(AppNavigation.is, AppNavigation)
+	</script>
+</dom-module>

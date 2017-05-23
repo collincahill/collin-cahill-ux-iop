@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="/bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="/bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="/bower_components/app-route/app-location.html">
+<link rel="import" href="/bower_components/app-route/app-route.html">
+<link rel="import" href="/src/project-app/user-profile.html">
+<link rel="import" href="/src/project-app/user-list.html">
+<link rel="import" href="/src/project-app/app-navigation.html">
+
+<dom-module id="project-app">
+  <template>
+    <style>
+			:host {
+				display: block;
+			}
+    </style>
+	<app-navigation></app-navigation>
+	<app-location route="{{route}}"></app-location>
+	<app-route
+			route="{{route}}"
+			pattern="/:view"
+			data="{{routeData}}"
+			tail="{{subroute}}"></app-route>
+	<iron-pages
+			selected="[[page]]"
+			attr-for-selected="name"
+			fallback-selection="404page"
+			role="main">
+		<user-list name="user-list"></user-list>
+		<new-user name="new-user"></new-user>
+		<edit-user name="edit-user"></edit-user>
+		<404-page name="404page"></404-page>
+	</iron-pages>
+
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class ProjectApp extends Polymer.Element {
+      static get is() { return 'project-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: ':)'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ProjectApp.is, ProjectApp);
+  </script>
+</dom-module>

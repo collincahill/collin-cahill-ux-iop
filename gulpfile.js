@@ -8,7 +8,7 @@ var gulp = require('gulp-help')(require('gulp')),
 
 gulp.task('connect', 'Starts a server for LiveReload', function() {
   connect.server({
-    root: ['src/html', 'src/css', 'src/js'],
+    root: ['src/html', 'src/css', 'src/js', './'],
     port: 1820,
     livereload: true
   });

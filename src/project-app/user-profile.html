@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="user-list-item.html">
+<link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+
+<dom-module id="user-profile">
+	<template>
+		<style>
+			:host {
+				display: flex;
+				justify-content: space-around;
+				padding: 1rem;
+				border-top: 1px solid gray;
+				font-family: 'Catamaran', sans-serif;
+			}
+			div {
+				display: flex;
+				flex-direction: column;
+			}
+			button {
+				display: flex;
+				justify-content: center;
+				align-self: center;
+
+				height: 2rem;
+				width: 2rem;
+
+				border: none;
+				border-radius: 100%;
+				color: white;
+				background-color: #5790ff;
+				transition: background-color 0.2s linear;
+			}
+			button#showHideButton::after {
+				content: "-";
+				color: white;
+				line-height: 0;
+				font-size: 3em;
+				transform: translateY(-3px);}
+			button:hover {
+				background-color: #acc8ff; }
+			button:hover::after {
+				background: gray; }
+			button#showHideButton[data-content-hidden='true']::after {
+				content: "+"; }
+			*[aria-hidden='true'] {
+					display: none; }
+		</style>
+		<div>
+			<div>
+				<user-list-item tag="first">{{first-name}}</user-list-item>
+				<user-list-item tag="last">{{last-name}}</user-list-item>
+				<user-list-item tag="email">{{email}}</user-list-item>
+			</div>
+			<div aria-hidden="true">
+				<user-list-item tag="id">{{user-id}}</user-list-item>
+				<user-list-item tag="phone">{{phone}}</user-list-item>
+			</div>
+			<button id="edit" aria-hidden="true">Edit</button>
+		</div>
+		<div>
+			<button id="showHideButton" data-content-hidden="true"></button>
+		</div>
+	</template>
+
+	<script>
+		class UserProfile extends Polymer.Element {
+			connectedCallback() {
+				super.connectedCallback();
+
+				this.table = this.shadowRoot.querySelector('table');
+				this.content = this.shadowRoot.querySelector('div[aria-hidden]');
+				this.editButton = this.shadowRoot.querySelector('button#edit');
+				this.button = this.shadowRoot.querySelector('button#showHideButton');
+
+				(function(self) {
+			    self.button.addEventListener('click', function() {
+			      self.toggleVisibility();
+			    });
+			  })(this);
+			}
+
+			static get is() { return 'user-profile' }
+			static get properties() {
+				return {
+					"first-name": String,
+					"last-name": String,
+					"user-id": String,
+					"phone": String,
+					"email": String
+				};
+			}
+
+			toggleVisibility() {
+				if (this.isHidden()) {
+					this.show();
+				} else {
+					this.hide();
+				}
+				this.dispatchEvent(profileVisibilityChanged);
+			}
+			isHidden() {
+				return this.content.getAttribute('aria-hidden') === 'true';
+			}
+			hide() {
+				this.content.setAttribute('aria-hidden', 'true');
+				this.editButton.setAttribute('aria-hidden', 'true');
+				this.button.setAttribute('data-content-hidden', 'true');
+			}
+			show() {
+				this.content.setAttribute('aria-hidden', 'false');
+				this.editButton.setAttribute('aria-hidden', 'false');
+				this.button.setAttribute('data-content-hidden', 'false');
+			}
+
+		}
+
+		var profileVisibilityChanged = new CustomEvent('profileVisibilityChanged', { bubbles: true, composed: true });
+
+		window.customElements.define(UserProfile.is, UserProfile)
+	</script>
+</dom-module>
