@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/iron-form/iron-form.html">
+<link rel="import" href="new-user-input.html">
+
+<dom-module id="new-user">
+	<template>
+		<style>
+			iron-form {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+		</style>
+		<iron-form>
+			<template is="dom-repeat" items="{{fields}}">
+				<new-user-input tag$="{{item.tag}}">[[item.name]]</new-user-input>
+			</template>
+			<input type="submit" />
+		</iron-form>
+	</template>
+	<script>
+		class NewUser extends Polymer.Element {
+			static get is() { return 'new-user' }
+			static get properties() {
+				return {
+					fields: Array
+				}
+			}
+		}
+		window.customElements.define(NewUser.is, NewUser);
+	</script>
+</dom-module>

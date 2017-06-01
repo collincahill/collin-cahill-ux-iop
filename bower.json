@@ -6,7 +6,10 @@
     "app-router": "^2.7.2",
     "app-layout": "PolymerElements/app-layout#^2.0.0",
     "iron-list": "PolymerElements/iron-list#^2.0.0",
-    "iron-ajax": "^2.0.0"
+    "iron-ajax": "^2.0.0",
+    "iron-form": "PolymerElements/iron-form#^1.1.5",
+    "iron-pages": "PolymerElements/iron-pages#^2.0.0",
+    "iron-selector": "PolymerElements/iron-selector#^2.0.0"
   },
   "devDependencies": {
     "web-component-tester": "^6.0.0-prerelease.5",

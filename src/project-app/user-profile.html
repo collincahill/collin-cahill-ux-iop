@@ -48,16 +48,18 @@
 		</style>
 		<div>
 			<div>
-				<user-list-item tag="first">{{first-name}}</user-list-item>
-				<user-list-item tag="last">{{last-name}}</user-list-item>
-				<user-list-item tag="email">{{email}}</user-list-item>
+				<user-list-item tag="first">[[userData.firstName]]</user-list-item>
+				<user-list-item tag="last">[[userData.lastName]]</user-list-item>
+				<user-list-item tag="email">[[userData.email]]</user-list-item>
 			</div>
 			<div aria-hidden="true">
-				<user-list-item tag="id">{{user-id}}</user-list-item>
-				<user-list-item tag="phone">{{phone}}</user-list-item>
+				<user-list-item tag="phone">[[userData.phone]]</user-list-item>
+				<user-list-item tag="id">[[userData._id]]</user-list-item>
 			</div>
-			<button id="edit" aria-hidden="true">Edit</button>
+			<a href="/edit-user/[[userData._id]]"><button id="edit" aria-hidden="true">Edit</button></a>
 		</div>
+
+
 		<div>
 			<button id="showHideButton" data-content-hidden="true"></button>
 		</div>
@@ -83,31 +85,28 @@
 			static get is() { return 'user-profile' }
 			static get properties() {
 				return {
-					"first-name": String,
-					"last-name": String,
-					"user-id": String,
-					"phone": String,
-					"email": String
+					userData: Object,
+					data: Object,
 				};
 			}
 
 			toggleVisibility() {
 				if (this.isHidden()) {
-					this.show();
+					this._show();
 				} else {
-					this.hide();
+					this._hide();
 				}
 				this.dispatchEvent(profileVisibilityChanged);
 			}
 			isHidden() {
 				return this.content.getAttribute('aria-hidden') === 'true';
 			}
-			hide() {
+			_hide() {
 				this.content.setAttribute('aria-hidden', 'true');
 				this.editButton.setAttribute('aria-hidden', 'true');
 				this.button.setAttribute('data-content-hidden', 'true');
 			}
-			show() {
+			_show() {
 				this.content.setAttribute('aria-hidden', 'false');
 				this.editButton.setAttribute('aria-hidden', 'false');
 				this.button.setAttribute('data-content-hidden', 'false');
@@ -116,7 +115,6 @@
 		}
 
 		var profileVisibilityChanged = new CustomEvent('profileVisibilityChanged', { bubbles: true, composed: true });
-
 		window.customElements.define(UserProfile.is, UserProfile)
 	</script>
 </dom-module>

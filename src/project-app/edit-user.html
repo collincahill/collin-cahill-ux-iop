@@ -1,0 +1,56 @@
+<!doctype html>
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+<dom-module id="edit-user">
+  <template>
+    <style>
+			iron-form {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+    </style>
+		<iron-form>
+			<template is="dom-repeat" items="{{fields}}">
+				<new-user-input tag="{{item.tag}}"
+												value="{{_getInputValue(user, item)}}"
+												disabled="[[item.disabled]]">[[item.name]]</new-user-input>
+			</template>
+			<input type="submit" value="Save" />
+		</iron-form>
+  </template>
+
+  <script>
+    class EditUser extends Polymer.Element {
+      static get is() { return 'edit-user'; }
+			static get properties() {
+				return {
+					subroute: Object,
+					id: {
+						type: String,
+						computed: "_getIdFromSubroute(subroute)"
+					},
+					users: Array,
+					user: {
+						type: Object,
+						computed: "_getUserById(users, id)"
+					},
+					fields: Array,
+				};
+			}
+
+			_getIdFromSubroute(subroute) {
+				return subroute.path.substr(1);
+			}
+
+			_getUserById(users, id) {
+				return users ? users.find(function(user){ user._id === id }) : {};
+			}
+
+			_getInputValue(user, item) {
+				return user[item.tag];
+			}
+    }
+		window.customElements.define(EditUser.is, EditUser);
+  </script>
+</dom-module>

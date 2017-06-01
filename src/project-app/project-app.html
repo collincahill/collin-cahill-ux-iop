@@ -5,8 +5,12 @@
 <link rel="import" href="/bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="/bower_components/app-route/app-location.html">
 <link rel="import" href="/bower_components/app-route/app-route.html">
-<link rel="import" href="/src/project-app/user-profile.html">
+<link rel="import" href="/bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="/bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="/src/project-app/user-list.html">
+<link rel="import" href="/src/project-app/new-user.html">
+<link rel="import" href="/src/project-app/edit-user.html">
 <link rel="import" href="/src/project-app/app-navigation.html">
 
 <dom-module id="project-app">
@@ -14,46 +18,102 @@
     <style>
 			:host {
 				display: block;
+				font-family: sans-serif;
 			}
+			a {
+				text-decoration: none;
+				color: blue; }
+			ul {
+				padding: 0; }
+			ul:after {
+				content: "";
+				display: table;
+				clear: both; }
+			ul li {
+				display: inline-block;
+				float: left;
+				padding: 0.5rem 0.7rem;
+				background: #656565; }
+			ul li:hover {
+				background: #9e9e9e; }
     </style>
-	<app-navigation></app-navigation>
-	<app-location route="{{route}}"></app-location>
-	<app-route
-			route="{{route}}"
-			pattern="/:view"
-			data="{{routeData}}"
-			tail="{{subroute}}"></app-route>
-	<iron-pages
-			selected="[[page]]"
-			attr-for-selected="name"
-			fallback-selection="404page"
-			role="main">
-		<user-list name="user-list"></user-list>
-		<new-user name="new-user"></new-user>
-		<edit-user name="edit-user"></edit-user>
-		<404-page name="404page"></404-page>
-	</iron-pages>
 
+		<iron-ajax url="/src/data/users.json"
+							 last-response="{{users}}"
+							 handle-as="json"
+							 auto
+							 ></iron-ajax>
 
+		<app-location route="{{route}}"></app-location>
+		<app-route
+				route="{{route}}"
+				pattern="/:page"
+				data="{{routeData}}"
+				tail="{{subroute}}"></app-route>
+
+		<iron-selector selected="user-list" attr-for-selected="name" role="navigation">
+			<a name="user-list" href="/">User List</a>
+			<a name="new-user"  href="/new-user">New User</a>
+			<a name="edit-user" href="/edit-user">Edit User</a>
+		</iron-selector>
+		<iron-pages
+				selected="[[routeData.page]]"
+				attr-for-selected="name"
+				selected-attribute="active"
+				fallback-selection="user-list"
+				role="main"
+				id="{{id}}">
+			<user-list name="user-list" users="{{users}}"></user-list>
+			<new-user name="new-user" fields="{{fields}}"></new-user>
+			<edit-user name="edit-user"
+								 subroute="[[subroute]]"
+								 users="{{users}}"
+								 fields="{{fields}}"></edit-user>
+		</iron-pages>
   </template>
 
   <script>
-    /**
-     * @customElement
-     * @polymer
-     */
     class ProjectApp extends Polymer.Element {
       static get is() { return 'project-app'; }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: ':)'
-          }
+					route: Object,
+          routeData: Object,
+					subroute: String,
+					page: {
+						type: String,
+						reflectToAttribute: true,
+					},
+					users: Array,
+					fields: {
+						type: Array,
+						value: [
+							{
+								tag: 'firstName',
+								name: 'First Name',
+							},
+							{
+								tag: 'lastName',
+								name: 'Last Name',
+							},
+							{
+								tag: 'email',
+								name: 'Email',
+								disabled: true,
+							},
+							{
+								tag: 'phone',
+								name: 'Phone',
+							},
+							{
+								tag: '_id',
+								name: "ID #",
+							}
+						]
+					},
         };
-      }
+			}
     }
-
     window.customElements.define(ProjectApp.is, ProjectApp);
   </script>
 </dom-module>
