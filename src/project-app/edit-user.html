@@ -30,7 +30,136 @@
 						type: String,
 						computed: "_getIdFromSubroute(subroute)"
 					},
-					users: Array,
+					users: {
+						value: [
+							{
+								"_id": "997632",
+								"firstName": "Reece",
+								"lastName": "Simmons",
+								"phone": "2667889441",
+								"email": "reece.simmons@gmail.com"
+							},
+							{
+								"_id": "563563",
+								"firstName": "Sally",
+								"lastName": "Egan",
+								"phone": "5435554602",
+								"email": "sally.egan@banno.com"
+							},
+							{
+								"_id": "834021",
+								"firstName": "Marlie",
+								"lastName": "Kaufman",
+								"phone": "7884560326",
+								"email": "marlie.kaufman@gmail.com"
+							},
+							{
+								"_id": "455693",
+								"firstName": "Ana",
+								"lastName": "Fitzpatrick",
+								"phone": "3280994823",
+								"email": "ana.fitzpatrick@gmail.com"
+							},
+							{
+								"_id": "933028",
+								"firstName": "Nelson",
+								"lastName": "Humphrey",
+								"phone": "7830267384",
+								"email": "nelson.humphrey@gmail.com"
+							},
+							{
+								"_id": "748204",
+								"firstName": "Craig",
+								"lastName": "Clark",
+								"phone": "6382884386",
+								"email": "craig.clark@gmail.com"
+							},
+							{
+								"_id": "294064",
+								"firstName": "Cameron",
+								"lastName": "Mooney",
+								"phone": "9845732576",
+								"email": "cameron.mooney@gmail.com"
+							},
+							{
+								"_id": "742839",
+								"firstName": "Brylee",
+								"lastName": "English",
+								"phone": "7285028472",
+								"email": "brylee.english@gmail.com"
+							},
+							{
+								"_id": "295782",
+								"firstName": "Finnegan",
+								"lastName": "Caldwell",
+								"phone": "7294202254",
+								"email": "finnegan.caldwell@gmail.com"
+							},
+							{
+								"_id": "372843",
+								"firstName": "Giselle",
+								"lastName": "Zimmerman",
+								"phone": "9284736184",
+								"email": "giselle.zimmerman@gmail.com"
+							},
+							{
+								"_id": "829472",
+								"firstName": "Maxim",
+								"lastName": "Terrell",
+								"phone": "1359278377",
+								"email": "maxim.terrell@gmail.com"
+							},
+							{
+								"_id": "729592",
+								"firstName": "Francisco",
+								"lastName": "Green",
+								"phone": "7284928447",
+								"email": "francisco.green@gmail.com"
+							},
+							{
+								"_id": "294024",
+								"firstName": "Rodolfo",
+								"lastName": "Hayes",
+								"phone": "9384280485",
+								"email": "rodolfo.hayes@gmail.com"
+							},
+							{
+								"_id": "294759",
+								"firstName": "Gerardo",
+								"lastName": "Coleman",
+								"phone": "8479280482",
+								"email": "gerardo.coleman@gmail.com"
+							},
+							{
+								"_id": "928472",
+								"firstName": "Carmelo",
+								"lastName": "Christensen",
+								"phone": "8274920572",
+								"email": "carmelo.christensen@gmai.com"
+							},
+							{
+								"_id": "729427",
+								"firstName": "Avah",
+								"lastName": "Shepherd",
+								"phone": "8295730284",
+								"email": "avah.shepherd@gmail.com"
+							},
+							{
+								"_id": "726593",
+								"firstName": "Kira",
+								"lastName": "Ibarra",
+								"phone": "7284920572",
+								"email": "kira.ibarra@gmail.com"
+							},
+							{
+								"_id": "548294",
+								"firstName": "Scott",
+								"lastName": "Bradford",
+								"phone": "8275939285",
+								"email": "scott.bradford@gmail.com"
+							}
+						]
+					},
 					user: {
 						type: Object,
 						computed: "_getUserById(users, id)"
@@ -44,11 +173,18 @@
 			}
 
 			_getUserById(users, id) {
-				return users ? users.find(function(user){ user._id === id }) : {};
+				for (var i = 0; i < users.length; i++) {
+					if (users[i]['_id'] === id) var user = users[i];
+				}
+				return user;
 			}
 
 			_getInputValue(user, item) {
-				return user[item.tag];
+				if (typeof(user) === 'undefined') {
+					return "";
+				} else {
+					return user[item.tag];
+				}
 			}
     }
 		window.customElements.define(EditUser.is, EditUser);

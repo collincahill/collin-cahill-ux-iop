@@ -63,12 +63,11 @@
 				fallback-selection="user-list"
 				role="main"
 				id="{{id}}">
-			<user-list name="user-list" users="{{users}}"></user-list>
-			<new-user name="new-user" fields="{{fields}}"></new-user>
+			<user-list name="user-list" users="[[users]]"></user-list>
+			<new-user name="new-user" fields="[[fields]]"></new-user>
 			<edit-user name="edit-user"
 								 subroute="[[subroute]]"
-								 users="{{users}}"
-								 fields="{{fields}}"></edit-user>
+								 fields="[[fields]]"></edit-user>
 		</iron-pages>
   </template>
 
@@ -80,11 +79,11 @@
 					route: Object,
           routeData: Object,
 					subroute: String,
+					users: Array,
 					page: {
 						type: String,
 						reflectToAttribute: true,
 					},
-					users: Array,
 					fields: {
 						type: Array,
 						value: [
