@@ -3,9 +3,13 @@
 <dom-module id="new-user-input">
   <template>
     <style>
+			:host {
+				border: 1px solid gray;
+				margin: 0.3rem 0;
+			}
       label {
         display: flex;
-        margin: 0.2rem 0;
+        margin: 0;
         padding: 0;
       }
       label > * {
@@ -13,20 +17,17 @@
       }
       label p {
         margin: 0;
-        position: absolute;
-        transform: translateX(-100%);
-        border: 1px solid gray;
         padding: 0.5rem 1rem;
         font-size: .7em;
-        border-right: none;
+				width: 20ch;
       }
       label input {
         margin: 0;
         padding: 0;
         padding: 0.53rem 0;
         font-size: 0.7rem;
-        border: 1px solid gray;
-        border-left: none;
+				border: none;
+				width: 100%;
       }
 			::slotted {
 				color: gray;

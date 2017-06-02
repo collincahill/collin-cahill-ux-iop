@@ -23,18 +23,19 @@
 			a {
 				text-decoration: none;
 				color: blue; }
-			ul {
+			iron-selector {
 				padding: 0; }
-			ul:after {
+			iron-selector:after {
 				content: "";
 				display: table;
 				clear: both; }
-			ul li {
+			iron-selector a {
 				display: inline-block;
 				float: left;
 				padding: 0.5rem 0.7rem;
+				color: white;
 				background: #656565; }
-			ul li:hover {
+			iron-selector a:hover, iron-selector .iron-selected {
 				background: #9e9e9e; }
     </style>
 
@@ -51,10 +52,9 @@
 				data="{{routeData}}"
 				tail="{{subroute}}"></app-route>
 
-		<iron-selector selected="user-list" attr-for-selected="name" role="navigation">
+		<iron-selector selected="[[routeData.page]]" attr-for-selected="name" role="navigation">
 			<a name="user-list" href="/">User List</a>
 			<a name="new-user"  href="/new-user">New User</a>
-			<a name="edit-user" href="/edit-user">Edit User</a>
 		</iron-selector>
 		<iron-pages
 				selected="[[routeData.page]]"
@@ -63,9 +63,10 @@
 				fallback-selection="user-list"
 				role="main"
 				id="{{id}}">
-			<user-list name="user-list" users="[[users]]"></user-list>
+			<user-list name="user-list" users="[[users]]" fields="[[fields]]"></user-list>
 			<new-user name="new-user" fields="[[fields]]"></new-user>
 			<edit-user name="edit-user"
+			           user-base="[[users]]"
 								 subroute="[[subroute]]"
 								 fields="[[fields]]"></edit-user>
 		</iron-pages>
@@ -79,7 +80,6 @@
 					route: Object,
           routeData: Object,
 					subroute: String,
-					users: Array,
 					page: {
 						type: String,
 						reflectToAttribute: true,
@@ -90,24 +90,24 @@
 							{
 								tag: 'firstName',
 								name: 'First Name',
+								hidden: false
 							},
 							{
 								tag: 'lastName',
 								name: 'Last Name',
+								hidden: false,
 							},
 							{
 								tag: 'email',
 								name: 'Email',
 								disabled: true,
+								hidden: true,
 							},
 							{
 								tag: 'phone',
 								name: 'Phone',
+								hidden: true
 							},
-							{
-								tag: '_id',
-								name: "ID #",
-							}
 						]
 					},
         };

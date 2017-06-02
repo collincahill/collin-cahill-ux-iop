@@ -19,13 +19,12 @@
 			}
 			iron-list {
 				width:100%;
-				overflow-y:hidden !important;
 			}
 		</style>
 
 		<iron-list items="[[users]]" as="user">
 			<template>
-				<user-profile user-data$="[[user]]" data="{{users}}"></user-profile>
+				<user-profile user-data$="[[user]]" data="{{users}}" fields="[[fields]]"></user-profile>
 			</template>
 		</iron-list>
 	</template>
@@ -34,7 +33,7 @@
 			static get is() { return 'user-list'; }
 			static get properties() {
 				return {
-					users: Array,
+					users: Object,
 					'data-address': String,
 				}
 			}

@@ -8,7 +8,6 @@
 		<style>
 			:host {
 				display: flex;
-				justify-content: space-around;
 				padding: 1rem;
 				border-top: 1px solid gray;
 				font-family: 'Catamaran', sans-serif;
@@ -48,13 +47,16 @@
 		</style>
 		<div>
 			<div>
-				<user-list-item tag="first">[[userData.firstName]]</user-list-item>
-				<user-list-item tag="last">[[userData.lastName]]</user-list-item>
-				<user-list-item tag="email">[[userData.email]]</user-list-item>
-			</div>
-			<div aria-hidden="true">
-				<user-list-item tag="phone">[[userData.phone]]</user-list-item>
-				<user-list-item tag="id">[[userData._id]]</user-list-item>
+				<div>
+					<template is="dom-repeat" items="[[fields]]" as="field" filter="_isShownField">
+						<user-list-item tag="[[field.name]]">[[_getUserDataByField(userData, field)]]</user-list-item>
+					</template>
+				</div>
+				<div aria-hidden="true">
+					<template is="dom-repeat" items="[[fields]]" as="field" filter="_isHiddenField">
+						<user-list-item tag="[[field.name]]">[[_getUserDataByField(userData, field)]]</user-list-item>
+					</template>
+				</div>
 			</div>
 			<a href="/edit-user/[[userData._id]]"><button id="edit" aria-hidden="true">Edit</button></a>
 		</div>
@@ -110,6 +112,16 @@
 				this.content.setAttribute('aria-hidden', 'false');
 				this.editButton.setAttribute('aria-hidden', 'false');
 				this.button.setAttribute('data-content-hidden', 'false');
+			}
+
+			_isHiddenField(field) {
+				return field.hidden;
+			}
+			_isShownField(field) {
+				return !field.hidden;
+			}
+			_getUserDataByField(userData, field) {
+				return typeof(userData) === 'undefined' ? "" : userData[field.tag];
 			}
 
 		}
