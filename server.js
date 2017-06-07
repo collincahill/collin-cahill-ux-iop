@@ -9,7 +9,11 @@ const port = 8000;
 const db = 'mongodb://localhost:27017/users';
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname));
+app.use('/', express.static(__dirname));
+
+app.get(['/new-user', '/edit-user/*'], function(req, res) {
+	res.sendFile('index.html', { root: '.' });
+});
 
 MongoClient.connect(db, function(err, database) {
 	if (err) { return console.log(err); }

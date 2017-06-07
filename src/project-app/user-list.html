@@ -10,6 +10,7 @@
 			@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600");
 			:host {
 				display: flex;
+				flex-direction: column;
 				font-family: "San Francisco", sans-serif;
 				box-sizing: border-box;
 			}
@@ -20,6 +21,12 @@
 			iron-list {
 				width:100%;
 			}
+			new-user {
+				width: 100%;
+				border-top: 1px solid black;
+				padding-top: 1em;
+				justify-content: center;
+			}
 		</style>
 
 		<iron-list items="[[users]]" as="user">
@@ -27,6 +34,7 @@
 				<user-profile user-data$="[[user]]" data="{{users}}" fields="[[fields]]"></user-profile>
 			</template>
 		</iron-list>
+		<new-user name="new-user" fields="[[fields]]"></new-user>
 	</template>
 	<script>
 		class UserList extends Polymer.Element {
