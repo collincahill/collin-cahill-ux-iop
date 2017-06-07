@@ -39,7 +39,7 @@
 				background: #9e9e9e; }
     </style>
 
-		<iron-ajax url="/src/data/users.json"
+		<iron-ajax url="/users"
 							 last-response="{{users}}"
 							 handle-as="json"
 							 auto
@@ -52,13 +52,15 @@
 				data="{{routeData}}"
 				tail="{{subroute}}"></app-route>
 
+		<h1>[[page]]</h1>
+
 		<iron-selector selected="[[routeData.page]]" attr-for-selected="name" role="navigation">
 			<a name="user-list" href="/">User List</a>
 			<a name="new-user"  href="/new-user">New User</a>
 		</iron-selector>
 		<iron-pages
 				selected="[[routeData.page]]"
-				attr-for-selected="name"
+        attr-for-selected="name"
 				selected-attribute="active"
 				fallback-selection="user-list"
 				role="main"
@@ -109,7 +111,7 @@
 								hidden: true
 							},
 						]
-					},
+					}
         };
 			}
     }

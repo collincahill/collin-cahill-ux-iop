@@ -4,8 +4,7 @@
   <template>
     <style>
 			:host {
-				border: 1px solid gray;
-				margin: 0.3rem 0;
+				margin: 0;
 			}
       label {
         display: flex;
@@ -34,9 +33,9 @@
 			}
     </style>
 
-    <label for$="{{tag}}">
+    <label for$="[[tag]]">
       <p><slot></slot></p>
-      <input type="text" id$="{{tag}}" disabled$="{{disabled}}" value="{{value}}" />
+      <input type="text" name$="{{tag}}" disabled$="[[disabled]]" value="{{value::input}}"/>
     </label>
   </template>
   <script>
@@ -45,8 +44,8 @@
       static get propertes() {
         return {
           tag: String,
-					disabled: Boolean,
-					value: String
+					disabled: String,
+					value: String,
         }
       }
     }
