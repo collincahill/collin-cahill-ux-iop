@@ -2,4 +2,5 @@ bower_components
 node_modules
 .DS_Store
 src/data/db/**
+src/data/db/*
 src/data/logs/**
