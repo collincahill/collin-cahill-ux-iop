@@ -1,4 +1,5 @@
 {
+	"esversion"     : 6,
 	"browser"       : true,     // true: Prevent false alarms with DOM API
 	"camelcase"			: true,			// true: Identifiers must be in camelCase
 	"curly"					: true,			// true: Require {} for every new block or scope

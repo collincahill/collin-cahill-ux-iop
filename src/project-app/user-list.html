@@ -10,57 +10,41 @@
 			@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600");
 			:host {
 				display: flex;
-				font-family: "Source Sans Pro", sans-serif;
+				flex-direction: column;
+				font-family: "San Francisco", sans-serif;
 				box-sizing: border-box;
 			}
 			:host > * {
 				margin: 0;
-				line-height: 2.2; }
-			table {
-				border-collapse: collapse;
-				display: block; }
-				table tbody tr td:first-child {
-					padding-right: 0.4rem;
-				}
-				tbody tr td:last-child {
-					padding-left: 0.4rem;
-					text-align: right;
-				}
-				table tbody tr td {
-					border-bottom: 1px solid black; }
-				table tbody tr:last-child td {
-					border: none;
-				}
-
-				table tbody[aria-hidden='true'] {
-					display: none; }
-
+				line-height: 2.2;
+			}
 			iron-list {
 				width:100%;
-				overflow-y:hidden !important;
+			}
+			new-user {
+				width: 100%;
+				border-top: 1px solid black;
+				padding-top: 1em;
+				justify-content: center;
 			}
 		</style>
 
-		<iron-ajax url="/src/data/users.json"
-							 last-response="{{users}}"
-							 handle-as="json"
-							 auto
-							 ></iron-ajax>
-
 		<iron-list items="[[users]]" as="user">
 			<template>
-				<user-profile first-name$="[[user.firstName]]"
-											last-name$="[[user.lastName]]"
-											user-id$="[[user.id]]"
-											phone$="[[user.phone]]"
-											email$="[[user.email]]"></user-profile>
-
+				<user-profile user-data$="[[user]]" data="{{users}}" fields="[[fields]]"></user-profile>
 			</template>
 		</iron-list>
+		<new-user name="new-user" fields="[[fields]]"></new-user>
 	</template>
 	<script>
 		class UserList extends Polymer.Element {
 			static get is() { return 'user-list'; }
+			static get properties() {
+				return {
+					users: Object,
+					'data-address': String,
+				}
+			}
 
 			connectedCallback() {
 				super.connectedCallback();
@@ -68,15 +52,7 @@
 					this.shadowRoot.querySelector('iron-list').fire('iron-resize');
 				});
 			}
-
-			static get properties() {
-				return {
-					users: Array,
-				}
-			}
 		}
-
-
 
 		window.customElements.define(UserList.is, UserList);
 	</script>

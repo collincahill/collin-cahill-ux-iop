@@ -9,40 +9,31 @@
 			align-items: center;
 			position: relative;
 			font-size: 9pt;
+			box-sizing: border-box;
 
-			margin: 0.8rem 0;
+			margin: 0;
 			border: 1px solid gray;
-			border-left: none;
-			border-top-right-radius: 10px;
-			border-bottom-right-radius: 10px;
+			width: 100%;
 
-			background: linear-gradient(to right, white, rgba(87, 144, 255, 0.5) 50%, white);
 			background-size: 400% 400%;
 			background-position: 0% 50%;
 			transition: all 0.5s ease;
-		}
-		:host(:hover) {
-			background-position: 100% 50%;
-		}
-		:host::before {
-			content: attr(tag);
-			position: absolute;
-			color: gray;
-			font-size: 0.7rem;
-			height:100%;
-			border: 1px solid gray;
-			padding-right: 0.5rem;
-			padding-left: 0.5rem;
-			border-top-left-radius: 10px;
-			border-bottom-left-radius:10px;
-			transform: translateX(-100%);
 		}
 		:host p {
 			margin: 0;
 			padding: 0;
 			padding: 0 1rem;
+			max-width: 20ch;
+		}
+		#tag {
+			color: gray;
+			font-size: 0.7rem;
+			height: 100%;
+			padding-left: 0.5rem;
+			padding-right: 0;
 		}
 		</style>
+		<p id="tag">{{tag}}</p>
 		<p><slot></slot></p>
 	</template>
 	<script>
@@ -50,10 +41,11 @@
 			static get is() { return 'user-list-item' }
 			static get properties() {
 				return {
-
+					tag: String,
 				}
 			}
 		}
+
 		window.customElements.define(UserListItem.is, UserListItem)
 	</script>
 </dom-module>

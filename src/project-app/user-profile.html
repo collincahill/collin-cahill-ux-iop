@@ -8,14 +8,23 @@
 		<style>
 			:host {
 				display: flex;
-				justify-content: space-around;
 				padding: 1rem;
 				border-top: 1px solid gray;
 				font-family: 'Catamaran', sans-serif;
+				width: 100%;
+				justify-content: center;
+			}
+			:host > div {
+				width: 100%;
+				max-width: 300px;
 			}
 			div {
 				display: flex;
 				flex-direction: column;
+			}
+			a {
+				text-decoration: none;
+
 			}
 			button {
 				display: flex;
@@ -23,13 +32,16 @@
 				align-self: center;
 
 				height: 2rem;
-				width: 2rem;
+				width: 100%;
 
 				border: none;
-				border-radius: 100%;
 				color: white;
 				background-color: #5790ff;
 				transition: background-color 0.2s linear;
+			}
+			button#showHideButton {
+				border-bottom-left-radius: 20px;
+				border-bottom-right-radius: 20px;
 			}
 			button#showHideButton::after {
 				content: "-";
@@ -43,24 +55,48 @@
 				background: gray; }
 			button#showHideButton[data-content-hidden='true']::after {
 				content: "+"; }
+			button#edit {
+				background-color: gray;
+				text-decoration: none;
+				font-size: 0.8rem;
+			}
+			button#edit:hover {
+				background-color: rgb(79, 79, 79);
+			}
 			*[aria-hidden='true'] {
 					display: none; }
+
+			user-list-item {
+				width: 100%;
+				border: 1px solid gray;
+				border-top: none;
+			}
+			#shown user-list-item:first-child {
+				border-top: 1px solid gray;
+			}
 		</style>
 		<div>
+
 			<div>
-				<user-list-item tag="first">{{first-name}}</user-list-item>
-				<user-list-item tag="last">{{last-name}}</user-list-item>
-				<user-list-item tag="email">{{email}}</user-list-item>
+				<div>
+					<div id="shown">
+						<template is="dom-repeat" items="[[fields]]" as="field" filter="_isShownField">
+							<user-list-item tag="[[field.name]]">[[_getUserDataByField(userData, field)]]</user-list-item>
+						</template>
+					</div>
+					<div aria-hidden="true">
+						<template is="dom-repeat" items="[[fields]]" as="field" filter="_isHiddenField">
+							<user-list-item tag="[[field.name]]">[[_getUserDataByField(userData, field)]]</user-list-item>
+						</template>
+					</div>
+				</div>
+				<a href="/edit-user/[[userData._id]]"><button id="edit" aria-hidden="true">Edit</button></a>
 			</div>
-			<div aria-hidden="true">
-				<user-list-item tag="id">{{user-id}}</user-list-item>
-				<user-list-item tag="phone">{{phone}}</user-list-item>
+			<div>
+				<button id="showHideButton" data-content-hidden="true"></button>
 			</div>
-			<button id="edit" aria-hidden="true">Edit</button>
 		</div>
-		<div>
-			<button id="showHideButton" data-content-hidden="true"></button>
-		</div>
+
 	</template>
 
 	<script>
@@ -83,40 +119,46 @@
 			static get is() { return 'user-profile' }
 			static get properties() {
 				return {
-					"first-name": String,
-					"last-name": String,
-					"user-id": String,
-					"phone": String,
-					"email": String
+					userData: Object,
+					data: Object
 				};
 			}
 
 			toggleVisibility() {
 				if (this.isHidden()) {
-					this.show();
+					this._show();
 				} else {
-					this.hide();
+					this._hide();
 				}
 				this.dispatchEvent(profileVisibilityChanged);
 			}
 			isHidden() {
 				return this.content.getAttribute('aria-hidden') === 'true';
 			}
-			hide() {
+			_hide() {
 				this.content.setAttribute('aria-hidden', 'true');
 				this.editButton.setAttribute('aria-hidden', 'true');
 				this.button.setAttribute('data-content-hidden', 'true');
 			}
-			show() {
+			_show() {
 				this.content.setAttribute('aria-hidden', 'false');
 				this.editButton.setAttribute('aria-hidden', 'false');
 				this.button.setAttribute('data-content-hidden', 'false');
 			}
 
+			_isHiddenField(field) {
+				return field.hidden;
+			}
+			_isShownField(field) {
+				return !field.hidden;
+			}
+			_getUserDataByField(userData, field) {
+				return typeof(userData) === 'undefined' ? "" : userData[field.tag];
+			}
+
 		}
 
 		var profileVisibilityChanged = new CustomEvent('profileVisibilityChanged', { bubbles: true, composed: true });
-
 		window.customElements.define(UserProfile.is, UserProfile)
 	</script>
 </dom-module>
