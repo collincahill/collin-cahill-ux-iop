@@ -1,0 +1,59 @@
+<!doctype html>
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-list/iron-list.html">
+<link rel="import" href="user-profile.html">
+
+<dom-module id="user-list">
+	<template>
+		<style>
+			@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600");
+			:host {
+				display: flex;
+				flex-direction: column;
+				font-family: "San Francisco", sans-serif;
+				box-sizing: border-box;
+			}
+			:host > * {
+				margin: 0;
+				line-height: 2.2;
+			}
+			iron-list {
+				width:100%;
+			}
+			new-user {
+				width: 100%;
+				border-top: 1px solid black;
+				padding-top: 1em;
+				justify-content: center;
+			}
+		</style>
+
+		<iron-list items="[[users]]" as="user">
+			<template>
+				<user-profile user-data$="[[user]]" data="{{users}}" fields="[[fields]]"></user-profile>
+			</template>
+		</iron-list>
+		<new-user name="new-user" fields="[[fields]]"></new-user>
+	</template>
+	<script>
+		class UserList extends Polymer.Element {
+			static get is() { return 'user-list'; }
+			static get properties() {
+				return {
+					users: Object,
+					'data-address': String,
+				}
+			}
+
+			connectedCallback() {
+				super.connectedCallback();
+				this.addEventListener('profileVisibilityChanged', function(e) {
+					this.shadowRoot.querySelector('iron-list').fire('iron-resize');
+				});
+			}
+		}
+
+		window.customElements.define(UserList.is, UserList);
+	</script>
+</dom-module>

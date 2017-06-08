@@ -1,0 +1,51 @@
+<!doctype html>
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+<dom-module id="user-list-item">
+	<template>
+		<style>
+		:host {
+			display: flex;
+			align-items: center;
+			position: relative;
+			font-size: 9pt;
+			box-sizing: border-box;
+
+			margin: 0;
+			border: 1px solid gray;
+			width: 100%;
+
+			background-size: 400% 400%;
+			background-position: 0% 50%;
+			transition: all 0.5s ease;
+		}
+		:host p {
+			margin: 0;
+			padding: 0;
+			padding: 0 1rem;
+			max-width: 20ch;
+		}
+		#tag {
+			color: gray;
+			font-size: 0.7rem;
+			height: 100%;
+			padding-left: 0.5rem;
+			padding-right: 0;
+		}
+		</style>
+		<p id="tag">{{tag}}</p>
+		<p><slot></slot></p>
+	</template>
+	<script>
+		class UserListItem extends Polymer.Element {
+			static get is() { return 'user-list-item' }
+			static get properties() {
+				return {
+					tag: String,
+				}
+			}
+		}
+
+		window.customElements.define(UserListItem.is, UserListItem)
+	</script>
+</dom-module>
