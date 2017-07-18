@@ -4,7 +4,7 @@
 A UX project to get me up to speed on necessary skills and technologies I will be using on the UX team.
 
 ## How to Use
-- Install Node dependencies: `node install`
+- Install Node dependencies: `npm install`
 - Install Bower dependencies: `bower install`
 - Run the Firebase server: `firebase serve`
 - In a browser, go to `localhost:5000`
