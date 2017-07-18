@@ -1,5 +1,6 @@
 <!doctype html>
 <link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/polymerfire/firebase-document.html">
 <link rel="import" href="/src/project-app/new-user-input.html">
 
 <dom-module id="edit-user">
@@ -44,11 +45,17 @@
 				border-top: 1px solid gray;
 			}
     </style>
-		<iron-ajax url="/user/[[id]]"
+		<!-- <iron-ajax url="/user/[[id]]"
 							 last-response="{{user}}"
 							 handle-as="json"
-							 auto></iron-ajax>
-		<form action="/update/[[id]]" method="post">
+							 auto></iron-ajax> -->
+
+		<firebase-document
+			path="/users/[[id]]"
+			data="{{user}}">
+		</firebase-document>
+
+		<form action="https://us-central1-intern-project-32488.cloudfunctions.net/updateUser" method="post">
 			<new-user-input tag="firstName"
 											name="firstName"
 											value="{{user.firstName::input}}">First Name</new-user-input>
@@ -66,11 +73,13 @@
 											name="phone"
 											value="{{user.phone::input}}">Phone</new-user-input>
 											<input type="text" name="phone" value="[[user.phone]]" hidden/>
+											<input type="text" name="uid" value="[[id]]" hidden>
 
 			<input type="submit" value="Save" />
 		</form>
-		<form action="/delete/[[id]]" method="post">
+		<form action="https://us-central1-intern-project-32488.cloudfunctions.net/deleteUser" method="post">
 			<input type="submit" value="Delete" />
+			<input type="text" name="uid" value="[[id]]" hidden />
 		</form>
   </template>
 
@@ -88,7 +97,7 @@
 					disabled: {
 						type: String,
 						value: 'true'
-					}
+					},
 				};
 			}
 

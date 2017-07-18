@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": "./",
+    "ignore": [
+      ".DS_Store",
+      "src/data/db/**",
+      "src/data/db/*",
+      "src/data/logs/**",
+			"**/node_modules/**"
+    ]
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

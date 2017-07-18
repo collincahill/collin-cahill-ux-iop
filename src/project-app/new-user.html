@@ -39,7 +39,7 @@
 				background-color: rgb(151, 255, 99)
 			}
 		</style>
-			<form id="create-user" method="post" action="/">
+			<form id="create-user" method="post" action="https://us-central1-intern-project-32488.cloudfunctions.net/addUser">
 				<template is="dom-repeat" items="{{fields}}">
 					<new-user-input tag$="{{item.tag}}" name$="{{item.tag}}" value="{{item.value::input}}">[[item.name]]</new-user-input>
 					<input name$="{{item.tag}}" value="[[item.value]]" hidden>

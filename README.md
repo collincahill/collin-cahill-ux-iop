@@ -4,16 +4,10 @@
 A UX project to get me up to speed on necessary skills and technologies I will be using on the UX team.
 
 ## How to Use
-### <a name="setup"></a>Setup MongoDB
-For this step, you must have [MongoDB] installed on your computer, along with the `mongod` shell command.
-In the project's root folder, run `mongod --dbpath ./src/data/db`.
-
-A binary backup of the user database used for this project is stored in `/src/data/backup`, with a raw JSON export of the `users` collection stored in `/src/data/users.json`. To recreate the architecture used by the application, run `mongorestore ./src/data/backup/`. The `mongorestore` command takes a directory as an input.
-
-When you've finished, shut down the Mongo Daemon.
-
-### Run the Project
-With the database set up, you can now run the project! Just run the `gulp` command and the project will go live on [port 8000](http://localhost:8000).
+- Install Node dependencies: `npm install`
+- Install Bower dependencies: `bower install`
+- Run the Firebase server: `firebase serve`
+- In a browser, go to `localhost:5000`
 
 
 ## Dependencies
@@ -62,6 +56,9 @@ I have had to make many changes.
 - No Angular dependencies. All data bindings are in browser-native JS with Polymer sugar.
 - No HTML partials folder. Instead, all 'partials' are stored in Polymer web components in `/src/project-app/`
 - Routes are defined on the front-end by `<iron-pages>`, `<app-location`, `<app-route>`, with navigation by `<iron-selector>` all located in the app shell (`<project-app>`), and the Express.js server simply sends the `index.html` file in the root of the project and allows the app shell to do the routing.
+- Gulp no longer used as a build tool, because of the nature of Polymer, which won't allow for preprocessing CSS.
+- Firebase implemented for data storage (previously MongoDB).
+
 - The `gulp` command still runs the project, but it uses `server.js` instead of LiveReload for the server, meaning you are required to refresh the page yourself after changes.
 	- Because of this, `gulp-connect` may no longer be necessary.
 	- `server.js` is run by nodemon, which will restart the server after changes are detected, so server operations (mostly changes to the API or server-side router) will be reflected without needing to run Gulp again.
@@ -70,6 +67,9 @@ I have had to make many changes.
 #### Struggles
 - Using the `dom-repeat` template with calculated bindings proved more complicated than I could handle. I had to remove the `dom-repeat` on the Edit User view which iterated through data fields to display content (computing the user's information into the fields dynamically) and type in the data fields one by one. The New User view, which is nearly identical from a functional perspective, still uses a `dom-repeat`.
 - I spent almost a full day trying to configure the `<iron-pages>` element correctly before I realized I didn't import it at the top. So that was frustrating.
+
+
+
 - Configuring MongoDB was a bit of a challenge, because the MongoDB docs seemed so spotty. Luckily, I was able to learn a lot from a handful of screencasts and the help of [Robomongo](https://robomongo.org/).
 - I'm still unable to shut down the Mongo Daemon correctly. Instructions in [setup](#setup) are still the only way I've found to kill the Mongo Daemon process, but I have found that the error Gulp gives if the Daemon is already running does not halt Gulp and the database is still accessible.
 
